@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-квест «Интернет – территория безопасности»</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">КиберСтражи</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-label">Прогресс миссии:</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">0 / 5</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section id="intro" class="section active">
+        <div class="container">
+            <div class="hero">
+                <img src="images/cover.jpg" alt="Интернет – территория безопасности" class="hero-image">
+                <div class="hero-content">
+                    <h1>Интернет – территория безопасности</h1>
+                    <p class="subtitle">Веб-квест для учащихся и их родителей</p>
+                    <p class="legend">
+                        В цифровом пространстве появилась аномалия: сеть «Теневой код» пытается захватить данные подростков. 
+                        Вы — отряд <strong>КиберСтражи</strong>. Ваша миссия — пройти 5 зон безопасности, 
+                        обезвредить ловушки мошенников и вернуть контроль над территорией.
+                    </p>
+                    <div class="info-box">
+                        <h3>Что вас ждёт:</h3>
+                        <ul>
+                            <li>Распознавание фишинга и социальной инженерии</li>
+                            <li>Защита от атак с использованием искусственного интеллекта</li>
+                            <li>Права и обязанности в цифровом пространстве</li>
+                            <li>Совместные задания с родителями</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" onclick="startQuest()">Начать миссию</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карта зон -->
+    <section id="map" class="section">
+        <div class="container">
+            <h2>Карта зон безопасности</h2>
+            <p class="map-desc">Выберите зону для прохождения. Зоны открываются последовательно.</p>
+            <div class="zones-grid" id="zonesGrid">
+                <div class="zone-card locked" data-zone="1" onclick="openZone(1)">
+                    <div class="zone-number">1</div>
+                    <div class="zone-icon">👣</div>
+                    <h3>Цифровой след</h3>
+                    <p>Права, обязанности и ваш след в сети</p>
+                    <span class="zone-status">Заблокировано</span>
+                </div>
+                <div class="zone-card locked" data-zone="2" onclick="openZone(2)">
+                    <div class="zone-number">2</div>
+                    <div class="zone-icon">🎣</div>
+                    <h3>Ловушка фишинга</h3>
+                    <p>Учимся распознавать поддельные сообщения</p>
+                    <span class="zone-status">Заблокировано</span>
+                </div>
+                <div class="zone-card locked" data-zone="3" onclick="openZone(3)">
+                    <div class="zone-number">3</div>
+                    <div class="zone-icon">🤝</div>
+                    <h3>Социальная инженерия</h3>
+                    <p>Игры на доверии и манипуляции</p>
+                    <span class="zone-status">Заблокировано</span>
+                </div>
+                <div class="zone-card locked" data-zone="4" onclick="openZone(4)">
+                    <div class="zone-number">4</div>
+                    <div class="zone-icon">🤖</div>
+                    <h3>Атаки с ИИ</h3>
+                    <p>Дипфейки, голосовой фишинг и новое</p>
+                    <span class="zone-status">Заблокировано</span>
+                </div>
+                <div class="zone-card locked" data-zone="5" onclick="openZone(5)">
+                    <div class="zone-number">5</div>
+                    <div class="zone-icon">⚖️</div>
+                    <h3>Правовая культура</h3>
+                    <p>Ответственность и безопасные действия</p>
+                    <span class="zone-status">Заблокировано</span>
+                </div>
+            </div>
+            <div class="map-image-wrapper">
+                <img src="images/zones.jpg" alt="Зоны безопасности" class="zones-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Миссия 1 -->
+    <section id="zone1" class="section mission">
+        <div class="container">
+            <button class="btn btn-back" onclick="showMap()">← Вернуться к карте</button>
+            <h2>Зона 1. Цифровой след и правовая зона</h2>
+            
+            <div class="mission-content">
+                <div class="info-card">
+                    <h3>Что такое цифровой след?</h3>
+                    <p>Всё, что вы оставляете в интернете: фото, комментарии, лайки, переписки, данные аккаунтов. Этот след остаётся надолго и может быть использован как во благо, так и во вред.</p>
+                </div>
+
+                <div class="info-card highlight">
+                    <h3>Права и обязанности (Республика Беларусь)</h3>
+                    <p>Согласно изменениям в Законе «О правах ребёнка» (2025 г.), родители обязаны защищать детей от информации в сети Интернет, которая причиняет вред их здоровью и развитию. Это включает разъяснение рисков и контроль использования ресурсов.</p>
+                    <ul>
+                        <li>Право на защиту персональных данных</li>
+                        <li>Обязанность не распространять чужие данные без согласия</li>
+                        <li>Обязанность родителей — учить безопасным правилам</li>
+                    </ul>
+                </div>
+
+                <div class="task-card">
+                    <h3>Задание 1. Что можно публиковать?</h3>
+                    <p>Выберите безопасные варианты (можно выбрать несколько):</p>
+                    <div class="quiz-options" id="quiz1">
+                        <label class="option"><input type="checkbox" value="safe"> Фото с семейного праздника (без указания адреса и школы)</label>
+                        <label class="option"><input type="checkbox" value="danger"> Номер телефона родителей «на всякий случай»</label>
+                        <label class="option"><input type="checkbox" value="safe"> Скриншот интересного задания по информатике</label>
+                        <label class="option"><input type="checkbox" value="danger"> Фото дома с видом номера подъезда и улицы</label>
+                        <label class="option"><input type="checkbox" value="danger"> Пароль от игрового аккаунта другу «в секрете»</label>
+                        <label class="option"><input type="checkbox" value="safe"> Мнение о прочитанной книге</label>
+                    </div>
+                    <button class="btn btn-secondary" onclick="checkQuiz1()">Проверить</button>
+                    <div class="feedback" id="feedback1"></div>
+                </div>
+
+                <div class="task-card parent-task">
+                    <h3>Совместное задание с родителем</h3>
+                    <p><strong>Составьте «Семейный цифровой договор»</strong> (3–5 пунктов). Пример:</p>
+                    <img src="images/family-contract.jpg" alt="Семейный цифровой договор" class="content-image">
+                    <textarea id="familyContract" placeholder="Напишите пункты вашего семейного договора..."></textarea>
+                    <button class="btn btn-primary" onclick="saveContract()">Сохранить договор и открыть следующую зону</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Миссия 2 -->
+    <section id="zone2" class="section mission">
+        <div class="container">
+            <button class="btn btn-back" onclick="showMap()">← Вернуться к карте</button>
+            <h2>Зона 2. Ловушка фишинга</h2>
+            
+            <div class="mission-content">
+                <div class="info-card">
+                    <h3>Что такое фишинг?</h3>
+                    <p>Это способ обмана, когда мошенники выдают себя за доверенные организации (банк, соцсеть, школу, игру) и пытаются заставить вас перейти по поддельной ссылке или ввести данные.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Пример опасного сообщения</h3>
+                    <img src="images/phishing-example.jpg" alt="Пример фишинга" class="content-image">
+                </div>
+
+                <div class="task-card">
+                    <h3>Задание: Найдите признаки фишинга</h3>
+                    <p>Отметьте все опасные признаки в сообщении ниже:</p>
+                    <div class="fake-message">
+                        <p><strong>От:</strong> Служба безопасности ВКонтакте &lt;support@vk-security.ru&gt;</p>
+                        <p><strong>Тема:</strong> СРОЧНО! Ваш аккаунт будет удалён через 2 часа!</p>
+                        <p>Здравствуйте! Мы обнаружили подозрительную активность. Чтобы сохранить аккаунт, немедленно перейдите по ссылке и подтвердите данные: <span class="fake-link">http://vkontakte-login.ru/confirm</span></p>
+                        <p>Если вы этого не сделаете — аккаунт будет заблокирован навсегда.</p>
+                    </div>
+                    <div class="quiz-options" id="quiz2">
+                        <label class="option"><input type="checkbox" value="1"> Срочность и давление («через 2 часа», «навсегда»)</label>
+                        <label class="option"><input type="checkbox" value="2"> Подозрительный адрес отправителя (не официальный)</label>
+                        <label class="option"><input type="checkbox" value="3"> Просьба перейти по ссылке и ввести данные</label>
+                        <label class="option"><input type="checkbox" value="4"> Странный домен ссылки (не vk.com)</label>
+                        <label class="option"><input type="checkbox" value="5"> Официальный красивый дизайн письма</label>
+                    </div>
+                    <button class="btn btn-secondary" onclick="checkQuiz2()">Проверить</button>
+                    <div class="feedback" id="feedback2"></div>
+                </div>
+
+                <div class="task-card">
+                    <h3>Правила защиты от фишинга</h3>
+                    <ul class="rules-list">
+                        <li>Никогда не переходите по ссылкам из неожиданных писем и сообщений</li>
+                        <li>Проверяйте адрес сайта (настоящий vk.com, а не vkontakte-login.ru)</li>
+                        <li>Включайте двухфакторную аутентификацию</li>
+                        <li>При сомнениях — зайдите на сайт самостоятельно через закладку</li>
+                        <li>Расскажите родителям о любом подозрительном сообщении</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="completeZone(2)">Я понял(а) правила. Открыть следующую зону</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Миссия 3 -->
+    <section id="zone3" class="section mission">
+        <div class="container">
+            <button class="btn btn-back" onclick="showMap()">← Вернуться к карте</button>
+            <h2>Зона 3. Социальная инженерия</h2>
+            
+            <div class="mission-content">
+                <div class="info-card">
+                    <h3>Что такое социальная инженерия?</h3>
+                    <p>Это манипуляции, когда мошенник сначала завоёвывает доверие, а потом использует его, чтобы заставить жертву сделать нужное действие (перевести деньги, отдать пароль, стать «дроппером»).</p>
+                </div>
+
+                <div class="cases">
+                    <div class="case-card">
+                        <h4>Кейс 1. «Старший игрок»</h4>
+                        <p>В Discord или игровом чате к вам подходит «опытный игрок» и предлагает бесплатный доступ к VIP-серверу или редкий предмет. Для этого нужно «войти через специальную ссылку» или «подтвердить аккаунт».</p>
+                        <p><strong>Вопрос:</strong> Почему это опасно?</p>
+                        <textarea class="case-answer" id="case1" placeholder="Ваш ответ..."></textarea>
+                    </div>
+                    <div class="case-card">
+                        <h4>Кейс 2. «Срочная помощь другу»</h4>
+                        <p>В мессенджере пишет «друг» (или аккаунт, похожий на друга): «Мама в больнице, срочно нужны деньги на такси. Переведи на эту карту, потом верну».</p>
+                        <p><strong>Вопрос:</strong> Что нужно сделать в первую очередь?</p>
+                        <textarea class="case-answer" id="case2" placeholder="Ваш ответ..."></textarea>
+                    </div>
+                    <div class="case-card">
+                        <h4>Кейс 3. «Лёгкий заработок»</h4>
+                        <p>В чате предлагают «подработать»: принимать переводы на свою карту и пересылать дальше. Обещают хороший процент.</p>
+                        <p><strong>Вопрос:</strong> К чему это может привести?</p>
+                        <textarea class="case-answer" id="case3" placeholder="Ваш ответ..."></textarea>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <h3>Этапы типичной атаки</h3>
+                    <ol class="steps-list">
+                        <li><strong>Разведка</strong> — изучают ваши интересы, друзей, активность</li>
+                        <li><strong>Установление контакта</strong> — притворяются ровесником или «помощником»</li>
+                        <li><strong>Завоевание доверия</strong> — несколько дней общения</li>
+                        <li><strong>Изоляция</strong> — просят «не рассказывать родителям»</li>
+                        <li><strong>Давление и действие</strong> — срочность, угрозы, обещания</li>
+                    </ol>
+                    <button class="btn btn-primary" onclick="completeZone(3)">Задание выполнено. Открыть следующую зону</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Миссия 4 -->
+    <section id="zone4" class="section mission">
+        <div class="container">
+            <button class="btn btn-back" onclick="showMap()">← Вернуться к карте</button>
+            <h2>Зона 4. Атаки с использованием искусственного интеллекта</h2>
+            
+            <div class="mission-content">
+                <div class="info-card warning">
+                    <h3>Новые угрозы 2025–2026 годов</h3>
+                    <p>Мошенники активно используют ИИ для создания:</p>
+                    <ul>
+                        <li><strong>Дипфейков</strong> — поддельных видео и фото</li>
+                        <li><strong>Голосового фишинга (вишинг)</strong> — имитации голоса родных</li>
+                        <li>Персонализированных писем, написанных почти идеально</li>
+                    </ul>
+                </div>
+
+                <div class="task-card">
+                    <h3>Задание: Настоящее или фейк?</h3>
+                    <div class="ai-case">
+                        <p><strong>Ситуация:</strong> Вам звонит «мама» с незнакомого номера и голосом, очень похожим на её голос, говорит: «Я попала в аварию, срочно переведи деньги на этот счёт, полиция уже здесь, не звони никому».</p>
+                        <p>Что вы сделаете?</p>
+                        <div class="quiz-options single" id="quiz4">
+                            <label class="option"><input type="radio" name="ai1" value="wrong"> Сразу переведу, ведь голос знакомый</label>
+                            <label class="option"><input type="radio" name="ai1" value="correct"> Положу трубку и наберу маму на её обычный номер</label>
+                            <label class="option"><input type="radio" name="ai1" value="wrong"> Попрошу прислать фото с места аварии</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="checkQuiz4()">Проверить</button>
+                    <div class="feedback" id="feedback4"></div>
+                </div>
+
+                <div class="task-card">
+                    <h3>Чеклист «Проверь перед действием»</h3>
+                    <ol>
+                        <li>Позвонил с незнакомого номера? → Перезвонить на известный</li>
+                        <li>Просят сохранить в секрете от родителей? → Красный флаг</li>
+                        <li>Срочность и давление? → Остановиться и подумать</li>
+                        <li>Голос/видео выглядит странно? → Проверить другим способом</li>
+                        <li>Сомневаешься? → Скажи взрослому</li>
+                    </ol>
+                    <button class="btn btn-primary" onclick="completeZone(4)">Чеклист усвоен. Открыть последнюю зону</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Миссия 5 -->
+    <section id="zone5" class="section mission">
+        <div class="container">
+            <button class="btn btn-back" onclick="showMap()">← Вернуться к карте</button>
+            <h2>Зона 5. Правовая культура и ответственность</h2>
+            
+            <div class="mission-content">
+                <div class="info-card">
+                    <h3>Что важно знать</h3>
+                    <ul>
+                        <li>Родители несут ответственность за защиту ребёнка от вредной информации в сети</li>
+                        <li>Распространение персональных данных без согласия — нарушение</li>
+                        <li>Участие в схемах мошенничества (даже «просто перевести») может привести к ответственности</li>
+                        <li>Кибербуллинг — это тоже нарушение прав других людей</li>
+                    </ul>
+                </div>
+
+                <div class="task-card">
+                    <h3>Задание: Составь памятку для сверстников</h3>
+                    <p>«Если ты подозреваешь мошенничество — что делать?»</p>
+                    <textarea id="memo" placeholder="1. Не паниковать&#10;2. Не переходить по ссылкам&#10;3. ..."></textarea>
+                </div>
+
+                <div class="task-card">
+                    <img src="images/checklist.jpg" alt="Чеклист КиберСтража" class="content-image">
+                </div>
+
+                <div class="task-card parent-task">
+                    <h3>Совместное задание</h3>
+                    <p>Вместе с родителем заполните «Карту безопасных действий семьи»:</p>
+                    <textarea id="familyMap" placeholder="Куда обращаться при угрозе:&#10;- Родителям&#10;- Классному руководителю&#10;- ..."></textarea>
+                    <button class="btn btn-primary" onclick="completeZone(5)">Завершить все зоны и перейти к финалу</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Финал -->
+    <section id="final" class="section">
+        <div class="container">
+            <div class="final-content">
+                <h2>🎉 Миссия выполнена!</h2>
+                <p class="final-text">Вы прошли все 5 зон и стали настоящим <strong>КиберСтражем</strong>!</p>
+                
+                <div class="certificate">
+                    <h3>Сертификат КиберСтража</h3>
+                    <p>Настоящим подтверждается, что участник веб-квеста</p>
+                    <input type="text" id="participantName" placeholder="Введите своё имя">
+                    <p>успешно освоил навыки безопасного поведения в сети Интернет, научился распознавать современные схемы кибермошенничества и готов защищать цифровую территорию.</p>
+                    <p class="cert-date">Гомельская область • 2026</p>
+                </div>
+
+                <div class="final-tasks">
+                    <h3>Финальное творческое задание</h3>
+                    <p>Выберите одно и выполните (можно дома):</p>
+                    <ul>
+                        <li>Создайте инфографику или памятку «5 правил КиберСтража»</li>
+                        <li>Снимите короткий ролик «Как я не попался на уловку»</li>
+                        <li>Предложите идею инновационной профилактики для класса или школы</li>
+                    </ul>
+                    <p>Лучшие работы можно представить на фестивале «Воспитание и Интернет».</p>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="downloadCertificate()">Скачать сертификат (текст)</button>
+                    <button class="btn btn-secondary" onclick="resetQuest()">Пройти квест заново</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Веб-квест «Интернет – территория безопасности» • Для областного фестиваля «Воспитание и Интернет» (Гомельская область)</p>
+            <p>Разработано для учащихся 8 классов и их родителей • 2026</p>
+        </div>
+    </footer>
+
+    <script src="js/quest.js"></script>
+</body>
+</html>
